@@ -1,5 +1,7 @@
 package com.porejemplo;
 
+import com.porejemplo.persist.UserRepository;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,13 @@ import java.io.IOException;
 
 @WebServlet("/first-http-servlet/*")
 public class FirstHttpServlet extends HttpServlet {
+
+    private UserRepository userRepository;
+
+    @Override
+    public void init() throws ServletException {
+        this.userRepository = (UserRepository) getServletContext().getAttribute("userRepository");
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
