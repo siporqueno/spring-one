@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/user/*")
 public class UserByIdServlet extends HttpServlet {
@@ -25,15 +26,17 @@ public class UserByIdServlet extends HttpServlet {
         long id = Long.parseLong(req.getPathInfo().substring(1));
         User user = userRepository.findById(id);
 
-        resp.getWriter().println("<table>");
-        resp.getWriter().println("<tr>");
-        resp.getWriter().println("<th>id</th>");
-        resp.getWriter().println("<th>username</th>");
-        resp.getWriter().println("</tr>");
-        resp.getWriter().println("<tr>");
-        resp.getWriter().println("<td>" + user.getId() + "</td>");
-        resp.getWriter().println("<td>" + user.getUsername() + "</td>");
-        resp.getWriter().println("</tr>");
-        resp.getWriter().println("</table>");
+        PrintWriter out = resp.getWriter();
+        out.println("<table>");
+        out.println("<tr>");
+        out.println("<th>id</th>");
+        out.println("<th>username</th>");
+        out.println("</tr>");
+        out.println("<tr>");
+        out.println("<td>" + user.getId() + "</td>");
+        out.println("<td>" + user.getUsername() + "</td>");
+        out.println("</tr>");
+        out.println("</table>");
+        out.close();
     }
 }
