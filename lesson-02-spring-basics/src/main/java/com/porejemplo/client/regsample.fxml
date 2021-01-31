@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<VBox fx:controller="com.porejemplo.client.RegController" xmlns:fx="http://javafx.com/fxml">
+    <Label text="Invent login"/>
+    <TextField fx:id="loginField"/>
+    <Label text="Think of password"/>
+    <TextField fx:id="passField"/>
+    <Label text="Enter nick"/>
+    <TextField fx:id="nickField"/>
+
+
+
+    <HBox fx:id="bottomPanel">
+        <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="2.0"/>
+        </BorderPane.margin>
+        <!--            <padding>-->
+        <!--                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>-->
+        <!--            </padding>-->
+        <Button fx:id="btnReg" text="Register" onAction="#clickReg" prefWidth="100"/>
+        <Button fx:id="btnClose" text="Close" onAction="#clickClose" prefWidth="100"/>
+    </HBox>
+</VBox>
