@@ -63,7 +63,7 @@ public class ProductController {
 
     @GetMapping("/{id}/delete")
     public String remove(@PathVariable("id") Long id) {
-        // TODO
-        return null;
+        productRepository.delete(id);
+        return "redirect:/product";
     }
 }
