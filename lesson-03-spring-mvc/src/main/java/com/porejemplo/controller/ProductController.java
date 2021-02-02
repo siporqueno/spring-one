@@ -56,13 +56,15 @@ public class ProductController {
     }
 
     @GetMapping("/new")
-    public String create() {
-        // TODO
-        return null;
+    public String create(Model model) {
+        logger.info("New endpoint requested");
+        model.addAttribute("product", new Product());
+        return "product_form";
     }
 
     @GetMapping("/{id}/delete")
     public String remove(@PathVariable("id") Long id) {
+        logger.info("Delete endpoint requested for product with id {}", id);
         productRepository.delete(id);
         return "redirect:/product";
     }
