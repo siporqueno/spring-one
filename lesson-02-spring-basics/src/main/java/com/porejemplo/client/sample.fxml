@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.172-ea"
+      fx:controller="com.porejemplo.client.Controller">
+
+    <HBox fx:id="upperPanel">
+        <TextField fx:id="loginField" HBox.hgrow="ALWAYS" promptText="Login"/>
+        <PasswordField fx:id="passwordField" HBox.hgrow="ALWAYS"
+                       promptText="Password" onAction="#tryToAuth"/>
+        <Button text="Authorize" onAction="#tryToAuth"/>
+        <Button text="Register" onAction="#tryToReg"/>
+    </HBox>
+
+
+    <HBox VBox.vgrow="ALWAYS">
+        <ListView fx:id="clientList" managed="false" visible="false" minWidth="50" onMouseClicked="#clickClientList"/>
+        <TextArea fx:id="textArea" editable="false" VBox.vgrow="ALWAYS">
+            <BorderPane.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </BorderPane.margin>
+            <padding>
+                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+            </padding>
+        </TextArea>
+
+    </HBox>
+
+
+    <HBox fx:id="bottomPanel" managed="false" visible="false">
+        <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="2.0"/>
+        </BorderPane.margin>
+        <!--            <padding>-->
+        <!--                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>-->
+        <!--            </padding>-->
+        <TextField fx:id="textField" onAction="#onActionTextFieldAndBtnSend" HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnSend" onAction="#onActionTextFieldAndBtnSend" prefWidth="50" text="Send"/>
+    </HBox>
+</VBox>
