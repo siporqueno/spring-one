@@ -12,10 +12,6 @@
 
     <artifactId>lesson-03-spring-mvc</artifactId>
 
-    <properties>
-        <spring.version>5.3.3</spring.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>

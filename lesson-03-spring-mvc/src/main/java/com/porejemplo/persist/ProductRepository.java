@@ -18,9 +18,9 @@ public class ProductRepository {
 
     @PostConstruct
     public void init() {
-        this.insert(new Product("milk", 50));
-        this.insert(new Product("cheese", 200));
-        this.insert(new Product("meat", 500));
+        this.insert(new Product("milk","3.2%",  50));
+        this.insert(new Product("cheese","Gauda", 200));
+        this.insert(new Product("meat", "pork",500));
     }
 
     public List<Product> findAll() {
