@@ -1,13 +1,18 @@
 package com.porejemplo.persist;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.PositiveOrZero;
+
 public class Product {
 
     private Long id;
 
+    @NotEmpty
     private String title;
 
     private String description;
 
+    @PositiveOrZero
     private int price;
 
     public Product(String title, int price) {
