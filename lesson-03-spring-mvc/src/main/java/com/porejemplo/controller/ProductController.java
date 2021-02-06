@@ -7,10 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/product")
@@ -62,7 +59,7 @@ public class ProductController {
         return "product_form";
     }
 
-    @GetMapping("/{id}/delete")
+    @DeleteMapping("/{id}")
     public String remove(@PathVariable("id") Long id) {
         logger.info("Delete endpoint requested for product with id {}", id);
         productRepository.delete(id);
