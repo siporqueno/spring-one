@@ -35,7 +35,7 @@
 <div class="container">
     <div class="row py-2">
         <div class="col-12">
-            <a class="btn btn-primary" th:href="@{/product/new}">Добавить продукт</a>
+            <a class="btn btn-primary" th:href="@{/user/new}">Добавить</a>
         </div>
 
         <div class="col-12">
@@ -43,24 +43,18 @@
                 <thead>
                 <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Price</th>
+                    <th scope="col">Username</th>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="product : ${products}">
-                    <td th:text="${product.id}" scope="row">1</td>
-                    <td th:text="${product.title}">Chocolate</td>
-                    <td th:text="${product.description}">Lindt</td>
-                    <td th:text="${product.price}">100</td>
+                <tr th:each="user : ${users}" >
+                    <th th:text="${user.id}" scope="row">1</th>
+                    <td th:text="${user.username}">Alex</td>
                     <td>
-                        <a class="btn btn-success" th:href="@{/product/{id}(id = ${product.id})}"><i
-                                class="fas fa-edit"></i></a>
-                        <form class="d-inline" th:method="delete" th:action="@{/product/{id}(id = ${product.id})}">
-                            <button type="submit" class="btn btn-danger"><i
-                                    class="far fa-trash-alt"></i></button>
+                        <a class="btn btn-success" th:href="@{/user/{id}(id = ${user.id})}"><i class="fas fa-edit"></i></a>
+                        <form class="d-inline" th:method="delete" th:action="@{/user/{id}(id = ${user.id})}">
+                            <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                         </form>
                     </td>
                 </tr>
