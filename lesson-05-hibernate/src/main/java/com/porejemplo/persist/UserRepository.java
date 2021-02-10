@@ -1,8 +1,11 @@
 package com.porejemplo.persist;
 
+import org.hibernate.exception.ConstraintViolationException;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 public class UserRepository {
@@ -38,7 +41,8 @@ public class UserRepository {
         try {
             em.persist(user);
         } catch (PersistenceException pe) {
-            System.out.println("Could not insert the user. The user with such username already exists!");
+            System.out.printf("Could not insert the user: " + user+ "\n");
+            pe.printStackTrace();
         }
 
         em.getTransaction().commit();
