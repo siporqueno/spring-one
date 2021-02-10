@@ -3,7 +3,6 @@ package com.porejemplo;
 import com.porejemplo.persist.User;
 import com.porejemplo.persist.UserRepository;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
 
 import javax.persistence.EntityManagerFactory;
 

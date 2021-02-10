@@ -17,5 +17,6 @@
         <property name="hibernate.format_sql">true</property>
 
         <mapping class="com.porejemplo.persist.User"/>
+        <mapping class="com.porejemplo.persist.Product"/>
     </session-factory>
 </hibernate-configuration>

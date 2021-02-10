@@ -5,55 +5,49 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
 import java.util.List;
 
-public class UserRepository {
+public class ProductRepository {
 
     private final EntityManagerFactory emFactory;
 
-    public UserRepository(EntityManagerFactory emFactory) {
+    public ProductRepository(EntityManagerFactory emFactory) {
         this.emFactory = emFactory;
     }
 
-    public List<User> findAll() {
+    public List<Product> findAll() {
         EntityManager em = emFactory.createEntityManager();
         em.getTransaction().begin();
-        List<User> result = em.createNamedQuery("allUsers").getResultList();
+        List<Product> result = em.createQuery("from Product", Product.class).getResultList();
         em.getTransaction().commit();
         em.close();
         return result;
     }
 
-    public User findById(long id) {
+    public Product findById(long id) {
         EntityManager em = emFactory.createEntityManager();
         em.getTransaction().begin();
-        User result = em.find(User.class, id);
+        Product result = em.find(Product.class, id);
         em.getTransaction().commit();
         em.close();
         return result;
     }
 
-    public void insert(User user) {
+    public void insert(Product product) {
         EntityManager em = emFactory.createEntityManager();
         em.getTransaction().begin();
-
-        try {
-            em.persist(user);
-        } catch (PersistenceException pe) {
-            System.out.println("Could not insert the user. The user with such username already exists!");
-        }
-
+        em.persist(product);
         em.getTransaction().commit();
         em.close();
     }
 
-    public void update(User user) {
+    public void update(Product product) {
         EntityManager em = emFactory.createEntityManager();
         em.getTransaction().begin();
-        if (user.getId() != null) {
-            User currentUser = em.find(User.class, user.getId());
-            currentUser.setEmail(user.getEmail());
-            currentUser.setUsername(user.getUsername());
-            currentUser.setPassword(user.getPassword());
-        } else em.persist(user);
+        if (product.getId() != null) {
+            Product currentProduct = em.find(Product.class, product.getId());
+            currentProduct.setTitle(product.getTitle());
+            currentProduct.setDescription(product.getDescription());
+            currentProduct.setPrice(product.getPrice());
+        } else em.persist(product);
         em.getTransaction().commit();
         em.close();
     }
@@ -61,8 +55,8 @@ public class UserRepository {
     public void delete(long id) {
         EntityManager em = emFactory.createEntityManager();
         em.getTransaction().begin();
-        User userToDelete = em.find(User.class, id);
-        if (userToDelete != null) em.remove(userToDelete);
+        Product productToDelete = em.find(Product.class, id);
+        if (productToDelete != null) em.remove(productToDelete);
         em.getTransaction().commit();
         em.close();
     }
