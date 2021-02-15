@@ -42,8 +42,15 @@ public class Main {
         buyerProductRepository.insert(petrBoughtBread);
         buyerProductRepository.insert(petrBoughtCheese);
 
-        productMilk.setPrice(25);
+        // This way update works
+        productMilk=productRepository.findById(1L);
+        productMilk.setPrice(40);
         productRepository.update(productMilk);
+
+        // This way it doesn't work
+        productBread.setId(2L);
+        productBread.setPrice(25);
+        productRepository.update(productBread);
 
         // Test of InfoService
         System.out.println("Ivan bought: " + infoService.findProductsOfBuyerWithId(1L));
