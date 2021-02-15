@@ -21,7 +21,7 @@ public class Main {
         ProductRepository productRepository = new ProductRepository(emFactory);
         InfoService infoService = new InfoService(buyerRepository, productRepository);
 
-        // Population of databases
+        // Population of tables
         Buyer buyerOne = new Buyer("Ivan");
         Buyer buyerTwo = new Buyer("Petr");
         buyerRepository.insert(buyerOne);
