@@ -28,9 +28,9 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>lesson-07-spring-data</name>
     <description>Homework of Lesson 7, Spring I</description>
-    <properties>
+    <!--<properties>
         <java.version>9</java.version>
-    </properties>
+    </properties>-->
 
     <dependencies>
         <dependency>
@@ -73,6 +73,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>
