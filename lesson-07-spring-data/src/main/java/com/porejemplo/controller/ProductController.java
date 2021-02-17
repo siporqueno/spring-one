@@ -38,7 +38,8 @@ public class ProductController {
     public String editPage(@PathVariable("id") Long id, Model model) {
         logger.info("Edit page for id {} requested", id);
 
-        model.addAttribute("product", productService.findById(id));
+        model.addAttribute("product", productService.findById(id)
+                .orElseThrow(NotFoundException::new));
         return "product_form";
     }
 
