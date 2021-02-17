@@ -2,19 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-<!--    <parent>-->
-<!--        <artifactId>geek-spring-part-one-01-25</artifactId>-->
-<!--        <groupId>org.example</groupId>-->
-<!--        <version>1.0-SNAPSHOT</version>-->
-<!--    </parent>-->
-<!--    <modelVersion>4.0.0</modelVersion>-->
-
-<!--    <artifactId>lesson-07-spring-data</artifactId>-->
-
-<!--    <properties>-->
-<!--        <maven.compiler.source>9</maven.compiler.source>-->
-<!--        <maven.compiler.target>9</maven.compiler.target>-->
-<!--    </properties>-->
 
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -28,9 +15,6 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>lesson-07-spring-data</name>
     <description>Homework of Lesson 7, Spring I</description>
-    <!--<properties>
-        <java.version>9</java.version>
-    </properties>-->
 
     <dependencies>
         <dependency>

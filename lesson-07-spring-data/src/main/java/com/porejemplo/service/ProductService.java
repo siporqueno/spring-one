@@ -42,6 +42,20 @@ public class ProductService implements ItemService<ProductRepr> {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<ProductRepr> findWithFilterGreaterThanEqual(BigDecimal minFilter) {
+        return productRepository.findByPriceGreaterThanEqual(minFilter).stream()
+                .map(ProductRepr::new)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ProductRepr> findWithFilterLessThanEqual(BigDecimal maxFilter) {
+        return productRepository.findByPriceLessThanEqual(maxFilter).stream()
+                .map(ProductRepr::new)
+                .collect(Collectors.toList());
+    }
+
     @Transactional
     @Override
     public Optional<ProductRepr> findById(long id) {

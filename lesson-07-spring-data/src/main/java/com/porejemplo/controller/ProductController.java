@@ -12,6 +12,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/product")
@@ -27,10 +30,25 @@ public class ProductController {
     }
 
     @GetMapping
-    public String listPage(Model model) {
+    public String listPage(Model model,
+                           @RequestParam("minPrice") Optional<BigDecimal> minPrice,
+                           @RequestParam("maxPrice") Optional<BigDecimal> maxPrice) {
         logger.info("List page requested");
 
-        model.addAttribute("products", productService.findAll());
+        List<ProductRepr> products;
+        if (minPrice.isPresent()) {
+            if (maxPrice.isPresent()) {
+                products = productService.findWithFilterBetween(minPrice.get(), maxPrice.get());
+            } else {
+                products = productService.findWithFilterGreaterThanEqual(minPrice.get());
+            }
+        } else if (maxPrice.isPresent()) {
+            products = productService.findWithFilterLessThanEqual(maxPrice.get());
+        } else {
+            products = productService.findAll();
+        }
+
+        model.addAttribute("products", products);
         return "product";
     }
 
