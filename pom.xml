@@ -22,6 +22,7 @@
         <module>lesson-04-spring-boot</module>
         <module>lesson-05-hibernate</module>
         <module>lesson-07-spring-data</module>
+        <module>lesson-06-hibernate</module>
     </modules>
 
 
