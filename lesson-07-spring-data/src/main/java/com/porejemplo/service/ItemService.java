@@ -21,4 +21,16 @@ public interface ItemService<T> {
     void save(T item);
 
     void delete(long id);
+
+    public default boolean isBigDecimalInIt(Optional<String> input) {
+        if (input.isEmpty()) return false;
+
+        try {
+            new BigDecimal(input.get());
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+
+        return true;
+    }
 }

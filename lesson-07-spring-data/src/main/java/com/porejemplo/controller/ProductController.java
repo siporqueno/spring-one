@@ -1,8 +1,8 @@
 package com.porejemplo.controller;
 
 import com.porejemplo.persist.Product;
-import com.porejemplo.service.ProductRepr;
 import com.porejemplo.service.ItemService;
+import com.porejemplo.service.ProductRepr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,19 +31,19 @@ public class ProductController {
 
     @GetMapping
     public String listPage(Model model,
-                           @RequestParam("minPrice") Optional<BigDecimal> minPrice,
-                           @RequestParam("maxPrice") Optional<BigDecimal> maxPrice) {
+                           @RequestParam("minPrice") Optional<String> minPrice,
+                           @RequestParam("maxPrice") Optional<String> maxPrice) {
         logger.info("List page requested");
 
         List<ProductRepr> products;
-        if (minPrice.isPresent()) {
-            if (maxPrice.isPresent()) {
-                products = productService.findWithFilterBetween(minPrice.get(), maxPrice.get());
+        if (minPrice.isPresent() && productService.isBigDecimalInIt(minPrice)) {
+            if (maxPrice.isPresent() && productService.isBigDecimalInIt(maxPrice)) {
+                products = productService.findWithFilterBetween(new BigDecimal(minPrice.get()), new BigDecimal(maxPrice.get()));
             } else {
-                products = productService.findWithFilterGreaterThanEqual(minPrice.get());
+                products = productService.findWithFilterGreaterThanEqual(new BigDecimal(minPrice.get()));
             }
-        } else if (maxPrice.isPresent()) {
-            products = productService.findWithFilterLessThanEqual(maxPrice.get());
+        } else if (maxPrice.isPresent() && productService.isBigDecimalInIt(maxPrice)) {
+            products = productService.findWithFilterLessThanEqual(new BigDecimal(maxPrice.get()));
         } else {
             products = productService.findAll();
         }

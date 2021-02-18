@@ -74,4 +74,5 @@ public class ProductService implements ItemService<ProductRepr> {
     public void delete(long id) {
         productRepository.deleteById(id);
     }
+
 }
