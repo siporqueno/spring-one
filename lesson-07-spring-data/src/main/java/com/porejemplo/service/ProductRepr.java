@@ -1,41 +1,37 @@
-package com.porejemplo.persist;
+package com.porejemplo.service;
 
-import com.porejemplo.service.ProductRepr;
+import com.porejemplo.persist.Product;
 
-import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "products")
-public class Product {
+public class ProductRepr {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title", nullable = false)
+    @NotEmpty
     private String title;
 
-    @Column(name = "description")
     private String description;
 
-    @Column(name = "price", nullable = false)
+    @PositiveOrZero
     private BigDecimal price;
 
-    public Product() {
+    public ProductRepr() {
     }
 
-    public Product(ProductRepr productRepr) {
-        this.id = productRepr.getId();
-        this.title = productRepr.getTitle();
-        this.description = productRepr.getDescription();
-        this.price = productRepr.getPrice();
-    }
-
-    public Product(String title, String description, BigDecimal price) {
+    public ProductRepr(String title, String description, BigDecimal price) {
         this.title = title;
         this.description = description;
         this.price = price;
+    }
+
+    public ProductRepr(Product product) {
+        this.id = product.getId();
+        this.title = product.getTitle();
+        this.description = product.getDescription();
+        this.price = product.getPrice();
     }
 
     public Long getId() {

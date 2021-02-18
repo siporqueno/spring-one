@@ -1,48 +1,25 @@
 package com.porejemplo.persist;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
+
+
+//        "milk","3.2%",  50
+//        "cheese","Gauda", 200
+//        "meat", "pork",500
 
 @Repository
-public class ProductRepository {
+public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    private Map<Long, Product> productMap = new ConcurrentHashMap<>();
+    List<Product> findProductByTitleLike(String title);
 
-    private AtomicLong identity = new AtomicLong(0);
+    List<Product> findByPriceBetween(BigDecimal minPrice, BigDecimal maxPrice);
 
-    @PostConstruct
-    public void init() {
-        this.insert(new Product("milk","3.2%",  50));
-        this.insert(new Product("cheese","Gauda", 200));
-        this.insert(new Product("meat", "pork",500));
-    }
+    List<Product> findByPriceGreaterThanEqual(BigDecimal minPrice);
 
-    public List<Product> findAll() {
-        return new ArrayList<>(productMap.values());
-    }
-
-    public Product findById(long id) {
-        return productMap.get(id);
-    }
-
-    public void insert(Product product) {
-        long id = identity.incrementAndGet();
-        product.setId(id);
-        productMap.put(id, product);
-    }
-
-    public void update(Product product) {
-        productMap.put(product.getId(), product);
-    }
-
-    public void delete(long id) {
-        productMap.remove(id);
-    }
+    List<Product> findByPriceLessThanEqual(BigDecimal maxPrice);
 
 }
