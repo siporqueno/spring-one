@@ -1,5 +1,7 @@
 package com.porejemplo.service;
 
+import org.springframework.data.domain.Page;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
@@ -8,13 +10,7 @@ public interface ItemService<T> {
 
     List<T> findAll();
 
-    List<T> findWithFilterLike(String filterLike);
-
-    List<T> findWithFilterBetween(BigDecimal minFilter, BigDecimal maxFilter);
-
-    List<T> findWithFilterGreaterThanEqual(BigDecimal minFilter);
-
-    List<T> findWithFilterLessThanEqual(BigDecimal maxFilter);
+    Page<T> findWithFilter(String likeFilter, BigDecimal minFilter, BigDecimal maxFilter, Integer page, Integer size);
 
     Optional<T> findById(long id);
 
@@ -22,15 +18,4 @@ public interface ItemService<T> {
 
     void delete(long id);
 
-    public default boolean isBigDecimalInIt(Optional<String> input) {
-        if (input.isEmpty()) return false;
-
-        try {
-            new BigDecimal(input.get());
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-
-        return true;
-    }
 }

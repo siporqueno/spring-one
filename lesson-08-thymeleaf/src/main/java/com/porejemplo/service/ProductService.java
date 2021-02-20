@@ -2,7 +2,11 @@ package com.porejemplo.service;
 
 import com.porejemplo.persist.Product;
 import com.porejemplo.persist.ProductRepository;
+import com.porejemplo.persist.ProductSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -29,31 +33,23 @@ public class ProductService implements ItemService<ProductRepr> {
     }
 
     @Override
-    public List<ProductRepr> findWithFilterLike(String filter) {
-        return productRepository.findProductByTitleLike(filter).stream()
-                .map(ProductRepr::new)
-                .collect(Collectors.toList());
-    }
+    public Page<ProductRepr> findWithFilter(String likeTitle, BigDecimal minPrice, BigDecimal maxPrice, Integer page, Integer size) {
+        Specification<Product> spec = Specification.where(null);
 
-    @Override
-    public List<ProductRepr> findWithFilterBetween(BigDecimal minFilter, BigDecimal maxFilter) {
-        return productRepository.findByPriceBetween(minFilter, maxFilter).stream()
-                .map(ProductRepr::new)
-                .collect(Collectors.toList());
-    }
+        if (likeTitle != null && !likeTitle.isBlank()) {
+            spec = spec.and(ProductSpecification.titleLike(likeTitle));
+        }
 
-    @Override
-    public List<ProductRepr> findWithFilterGreaterThanEqual(BigDecimal minFilter) {
-        return productRepository.findByPriceGreaterThanEqual(minFilter).stream()
-                .map(ProductRepr::new)
-                .collect(Collectors.toList());
-    }
+        if (minPrice != null) {
+            spec = spec.and(ProductSpecification.minPrice(minPrice));
+        }
 
-    @Override
-    public List<ProductRepr> findWithFilterLessThanEqual(BigDecimal maxFilter) {
-        return productRepository.findByPriceLessThanEqual(maxFilter).stream()
-                .map(ProductRepr::new)
-                .collect(Collectors.toList());
+        if (maxPrice != null) {
+            spec = spec.and(ProductSpecification.maxPrice(maxPrice));
+        }
+
+        return productRepository.findAll(spec, PageRequest.of(page, size))
+                .map(ProductRepr::new);
     }
 
     @Transactional
