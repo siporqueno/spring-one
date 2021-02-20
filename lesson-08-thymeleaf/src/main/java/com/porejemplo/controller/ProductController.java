@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -36,7 +35,8 @@ public class ProductController {
                            @RequestParam("minPrice") Optional<BigDecimal> minPrice,
                            @RequestParam("maxPrice") Optional<BigDecimal> maxPrice,
                            @RequestParam("page") Optional<Integer> page,
-                           @RequestParam("size") Optional<Integer> size) {
+                           @RequestParam("size") Optional<Integer> size,
+                           @RequestParam("sortColumn") Optional<String> sortColumn) {
         logger.info("List page requested");
 
         Page<ProductRepr> products = productService.findWithFilter(
@@ -44,7 +44,8 @@ public class ProductController {
                 minPrice.orElse(null),
                 maxPrice.orElse(null),
                 page.orElse(1) - 1,
-                size.orElse(3)
+                size.orElse(3),
+                sortColumn.orElse("id")
         );
 
         model.addAttribute("products", products);

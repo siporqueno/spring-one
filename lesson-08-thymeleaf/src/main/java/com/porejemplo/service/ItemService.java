@@ -10,7 +10,7 @@ public interface ItemService<T> {
 
     List<T> findAll();
 
-    Page<T> findWithFilter(String likeFilter, BigDecimal minFilter, BigDecimal maxFilter, Integer page, Integer size);
+    Page<T> findWithFilter(String likeFilter, BigDecimal minFilter, BigDecimal maxFilter, Integer page, Integer size, String sortColumn);
 
     Optional<T> findById(long id);
 

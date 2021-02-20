@@ -6,6 +6,7 @@ import com.porejemplo.persist.ProductSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,7 @@ public class ProductService implements ItemService<ProductRepr> {
     }
 
     @Override
-    public Page<ProductRepr> findWithFilter(String likeTitle, BigDecimal minPrice, BigDecimal maxPrice, Integer page, Integer size) {
+    public Page<ProductRepr> findWithFilter(String likeTitle, BigDecimal minPrice, BigDecimal maxPrice, Integer page, Integer size, String sortColumn) {
         Specification<Product> spec = Specification.where(null);
 
         if (likeTitle != null && !likeTitle.isBlank()) {
@@ -48,7 +49,7 @@ public class ProductService implements ItemService<ProductRepr> {
             spec = spec.and(ProductSpecification.maxPrice(maxPrice));
         }
 
-        return productRepository.findAll(spec, PageRequest.of(page, size))
+        return productRepository.findAll(spec, PageRequest.of(page, size, Sort.by(sortColumn)))
                 .map(ProductRepr::new);
     }
 
