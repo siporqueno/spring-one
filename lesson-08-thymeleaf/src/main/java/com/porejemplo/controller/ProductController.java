@@ -6,6 +6,7 @@ import com.porejemplo.service.ProductRepr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -31,24 +31,26 @@ public class ProductController {
 
     @GetMapping
     public String listPage(Model model,
-                           @RequestParam("minPrice") Optional<String> minPrice,
-                           @RequestParam("maxPrice") Optional<String> maxPrice) {
+                           @RequestParam("titleFilter") Optional<String> titleFilter,
+                           @RequestParam("minPrice") Optional<BigDecimal> minPrice,
+                           @RequestParam("maxPrice") Optional<BigDecimal> maxPrice,
+                           @RequestParam("page") Optional<Integer> page,
+                           @RequestParam("size") Optional<Integer> size,
+                           @RequestParam("sortColumn") Optional<String> sortColumn) {
         logger.info("List page requested");
 
-        List<ProductRepr> products;
-        if (minPrice.isPresent() && productService.isBigDecimalInIt(minPrice)) {
-            if (maxPrice.isPresent() && productService.isBigDecimalInIt(maxPrice)) {
-                products = productService.findWithFilterBetween(new BigDecimal(minPrice.get()), new BigDecimal(maxPrice.get()));
-            } else {
-                products = productService.findWithFilterGreaterThanEqual(new BigDecimal(minPrice.get()));
-            }
-        } else if (maxPrice.isPresent() && productService.isBigDecimalInIt(maxPrice)) {
-            products = productService.findWithFilterLessThanEqual(new BigDecimal(maxPrice.get()));
-        } else {
-            products = productService.findAll();
-        }
+        Page<ProductRepr> products = productService.findWithFilter(
+                titleFilter.filter(t -> !t.isBlank()).orElse(null),
+                minPrice.orElse(null),
+                maxPrice.orElse(null),
+                page.orElse(1) - 1,
+                size.orElse(3),
+                sortColumn.orElse("id")
+        );
 
         model.addAttribute("products", products);
+        model.addAttribute("previousPageNumber", products.previousOrFirstPageable().getPageNumber() + 1);
+        model.addAttribute("nextPageNumber", products.nextOrLastPageable().getPageNumber() + 1);
         return "product";
     }
 
