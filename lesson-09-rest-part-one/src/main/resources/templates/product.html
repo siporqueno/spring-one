@@ -42,26 +42,10 @@
             <table class="table table-bordered my-2">
                 <thead>
                 <tr>
-                    <th scope="col">Id
-                        <a th:href="@{/product(page=${param.page}, size=${param.size},
-                           titleFilter=${param.titleFilter}, minPrice=${param.minPrice}, maxPrice=${param.maxPrice}, sortField='id')}">
-                            <i class="fa fa-sort-down"></i></a>
-                    </th>
-                    <th scope="col">Title
-                        <a th:href="@{/product(page=${param.page}, size=${param.size},
-                           titleFilter=${param.titleFilter}, minPrice=${param.minPrice}, maxPrice=${param.maxPrice}, sortField='title')}">
-                            <i class="fa fa-sort-down"></i></a>
-                    </th>
-                    <th scope="col">Description
-                        <a th:href="@{/product(page=${param.page}, size=${param.size},
-                           titleFilter=${param.titleFilter}, minPrice=${param.minPrice}, maxPrice=${param.maxPrice}, sortField='description')}">
-                            <i class="fa fa-sort-down"></i></a>
-                    </th>
-                    <th scope="col">Price
-                        <a th:href="@{/product(page=${param.page}, size=${param.size},
-                           titleFilter=${param.titleFilter}, minPrice=${param.minPrice}, maxPrice=${param.maxPrice}, sortField='price')}">
-                            <i class="fa fa-sort-down"></i></a>
-                    </th>
+                    <th scope="col" th:replace="fragments/sort_header :: sort_header_product ('Id', 'id')"/>
+                    <th scope="col" th:replace="fragments/sort_header :: sort_header_product ('Title', 'title')"/>
+                    <th scope="col" th:replace="fragments/sort_header :: sort_header_product ('Description', 'description')"/>
+                    <th scope="col" th:replace="fragments/sort_header :: sort_header_product ('Price', 'price')"/>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
