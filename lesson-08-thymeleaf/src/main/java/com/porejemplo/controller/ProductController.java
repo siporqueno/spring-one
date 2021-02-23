@@ -36,7 +36,7 @@ public class ProductController {
                            @RequestParam("maxPrice") Optional<BigDecimal> maxPrice,
                            @RequestParam("page") Optional<Integer> page,
                            @RequestParam("size") Optional<Integer> size,
-                           @RequestParam("sortColumn") Optional<String> sortColumn) {
+                           @RequestParam("sortField") Optional<String> sortColumn) {
         logger.info("List page requested");
 
         Page<ProductRepr> products = productService.findWithFilter(

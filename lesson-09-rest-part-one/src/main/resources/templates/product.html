@@ -43,23 +43,23 @@
                 <thead>
                 <tr>
                     <th scope="col">Id
-                        <a th:href="@{/product(page=${num}, size=${products.size},
-                           titleFilter=${param.titleFilter}, minPrice=${param.minPrice}, maxPrice=${param.maxPrice}, sortColumn='id')}">
+                        <a th:href="@{/product(page=${param.page}, size=${param.size},
+                           titleFilter=${param.titleFilter}, minPrice=${param.minPrice}, maxPrice=${param.maxPrice}, sortField='id')}">
                             <i class="fa fa-sort-down"></i></a>
                     </th>
                     <th scope="col">Title
-                        <a th:href="@{/product(page=${num}, size=${products.size},
-                           titleFilter=${param.titleFilter}, minPrice=${param.minPrice}, maxPrice=${param.maxPrice}, sortColumn='title')}">
+                        <a th:href="@{/product(page=${param.page}, size=${param.size},
+                           titleFilter=${param.titleFilter}, minPrice=${param.minPrice}, maxPrice=${param.maxPrice}, sortField='title')}">
                             <i class="fa fa-sort-down"></i></a>
                     </th>
                     <th scope="col">Description
-                        <a th:href="@{/product(page=${num}, size=${products.size},
-                           titleFilter=${param.titleFilter}, minPrice=${param.minPrice}, maxPrice=${param.maxPrice}, sortColumn='description')}">
+                        <a th:href="@{/product(page=${param.page}, size=${param.size},
+                           titleFilter=${param.titleFilter}, minPrice=${param.minPrice}, maxPrice=${param.maxPrice}, sortField='description')}">
                             <i class="fa fa-sort-down"></i></a>
                     </th>
                     <th scope="col">Price
-                        <a th:href="@{/product(page=${num}, size=${products.size},
-                           titleFilter=${param.titleFilter}, minPrice=${param.minPrice}, maxPrice=${param.maxPrice}, sortColumn='price')}">
+                        <a th:href="@{/product(page=${param.page}, size=${param.size},
+                           titleFilter=${param.titleFilter}, minPrice=${param.minPrice}, maxPrice=${param.maxPrice}, sortField='price')}">
                             <i class="fa fa-sort-down"></i></a>
                     </th>
                     <th scope="col">Actions</th>
@@ -104,7 +104,8 @@
                         <a th:text="${num}"
                            th:href="@{/product(page=${num}, size=${products.size},
                            titleFilter=${param.titleFilter}, minPrice=${param.minPrice}, maxPrice=${param.maxPrice}, sortColumn=${param.sortColumn})}"
-                           class="page-link">1 <span th:if="${num == users.number + 1}" class="sr-only">(current)</span></a>
+                           class="page-link">1 <span th:if="${num == products.number + 1}"
+                                                     class="sr-only">(current)</span></a>
                     </li>
 
                     <li class="page-item" th:classappend="${!products.hasNext()} ? 'disabled'">
