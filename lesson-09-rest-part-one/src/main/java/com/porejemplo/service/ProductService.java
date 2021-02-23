@@ -62,8 +62,12 @@ public class ProductService implements ItemService<ProductRepr> {
 
     @Transactional
     @Override
-    public void save(ProductRepr item) {
-        productRepository.save(new Product(item));
+    public void save(ProductRepr productRepr) {
+        Product productToSave = new Product(productRepr);
+        productRepository.save(new Product(productRepr));
+        if (productRepr.getId() == null) {
+            productRepr.setId(productToSave.getId());
+        }
     }
 
     @Transactional
