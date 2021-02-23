@@ -82,7 +82,7 @@
                            tabindex="-1">Previous</a>
                     </li>
 
-                    <li th:each="num: ${#numbers.sequence(1, products.totalPages)}"
+                    <li th:each="num: ${#numbers.sequence(1, (products.totalPages <= 1)? 1 : products.totalPages)}"
                         th:classappend="${num == products.number + 1} ? 'active'"
                         class="page-item">
                         <a th:text="${num}"
