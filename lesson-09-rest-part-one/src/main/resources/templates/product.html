@@ -83,8 +83,7 @@
                     </li>
 
                     <li th:each="num: ${#numbers.sequence(1, (products.totalPages <= 1)? 1 : products.totalPages)}"
-                        th:classappend="${num == products.number + 1} ? 'active'"
-                        class="page-item">
+                        class="page-item" th:classappend="${num == products.number + 1} ? 'active'">
                         <a th:text="${num}"
                            th:href="@{/product(page=${num}, size=${products.size},
                            titleFilter=${param.titleFilter}, minPrice=${param.minPrice}, maxPrice=${param.maxPrice}, sortColumn=${param.sortColumn})}"

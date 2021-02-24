@@ -77,8 +77,7 @@
                     </li>
 
                     <li th:each="num: ${#numbers.sequence(1, (users.totalPages <= 1)? 1 : users.totalPages)}"
-                        th:classappend="${num == users.number + 1} ? 'active'"
-                        class="page-item">
+                        class="page-item" th:classappend="${num == users.number + 1} ? 'active'">
                         <a th:text="${num}"
                            th:href="@{/user(page=${num}, size=${users.size},
                            usernameFilter=${param.usernameFilter}, minAge=${param.minAge}, maxAge=${param.maxAge}, sortField=${param.sortField})}"
