@@ -42,14 +42,14 @@
             <table class="table table-bordered my-2">
                 <thead>
                 <tr>
-                    <th scope="col" th:replace="fragments/sort_header :: sort_header ('Id', 'id')"/>
-                    <th scope="col" th:replace="fragments/sort_header :: sort_header ('Username', 'username')"/>
-                    <th scope="col" th:replace="fragments/sort_header :: sort_header ('Age', 'age')"/>
+                    <th scope="col" th:replace="fragments/sort_header :: sort_header_user ('Id', 'id')"/>
+                    <th scope="col" th:replace="fragments/sort_header :: sort_header_user ('Username', 'username')"/>
+                    <th scope="col" th:replace="fragments/sort_header :: sort_header_user ('Age', 'age')"/>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:if="${users.hasContent()}" th:each="user : ${users.content}">
+                <tr th:if="${users.hasContent()}" th:each="user : ${users}">
                     <th th:text="${user.id}" scope="row">1</th>
                     <td th:text="${user.username}">Alex</td>
                     <td th:text="${user.age}">21</td>
@@ -76,9 +76,8 @@
                         <a class="page-link" href="#" tabindex="-1">Previous</a>
                     </li>
 
-                    <li th:each="num: ${#numbers.sequence(1, users.totalPages)}"
-                        th:classappend="${num == users.number + 1} ? 'active'"
-                        class="page-item">
+                    <li th:each="num: ${#numbers.sequence(1, (users.totalPages <= 1)? 1 : users.totalPages)}"
+                        class="page-item" th:classappend="${num == users.number + 1} ? 'active'">
                         <a th:text="${num}"
                            th:href="@{/user(page=${num}, size=${users.size},
                            usernameFilter=${param.usernameFilter}, minAge=${param.minAge}, maxAge=${param.maxAge}, sortField=${param.sortField})}"

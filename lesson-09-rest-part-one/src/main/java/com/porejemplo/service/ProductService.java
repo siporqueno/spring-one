@@ -34,7 +34,7 @@ public class ProductService implements ItemService<ProductRepr> {
     }
 
     @Override
-    public Page<ProductRepr> findWithFilter(String likeTitle, BigDecimal minPrice, BigDecimal maxPrice, Integer page, Integer size, String sortColumn) {
+    public Page<ProductRepr> findWithFilter(String likeTitle, BigDecimal minPrice, BigDecimal maxPrice, Integer page, Integer size, String sortField) {
         Specification<Product> spec = Specification.where(null);
 
         if (likeTitle != null && !likeTitle.isBlank()) {
@@ -49,7 +49,12 @@ public class ProductService implements ItemService<ProductRepr> {
             spec = spec.and(ProductSpecification.maxPrice(maxPrice));
         }
 
-        return productRepository.findAll(spec, PageRequest.of(page, size, Sort.by(sortColumn)))
+        if (sortField != null && !sortField.isBlank()) {
+            return productRepository.findAll(spec, PageRequest.of(page, size, Sort.by(sortField)))
+                    .map(ProductRepr::new);
+        }
+
+        return productRepository.findAll(spec, PageRequest.of(page, size))
                 .map(ProductRepr::new);
     }
 
@@ -62,8 +67,12 @@ public class ProductService implements ItemService<ProductRepr> {
 
     @Transactional
     @Override
-    public void save(ProductRepr item) {
-        productRepository.save(new Product(item));
+    public void save(ProductRepr productRepr) {
+        Product productToSave = new Product(productRepr);
+        productRepository.save(new Product(productRepr));
+        if (productRepr.getId() == null) {
+            productRepr.setId(productToSave.getId());
+        }
     }
 
     @Transactional
