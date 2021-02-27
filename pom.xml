@@ -24,7 +24,8 @@
         <module>lesson-07-spring-data</module>
         <module>lesson-06-hibernate</module>
         <module>lesson-08-thymeleaf</module>
-        <module>lesson-09-rest-part-one</module>
+        <module>lesson-09-com.porejemplo.controller.rest-part-one</module>
+        <module>lesson-10-com.porejemplo.controller.rest-part-two</module>
     </modules>
 
 

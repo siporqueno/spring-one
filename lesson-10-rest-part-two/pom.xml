@@ -11,10 +11,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>lesson-09-com.porejemplo.controller.rest-part-one</artifactId>
+    <artifactId>lesson-10-rest-part-two</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>lesson-09-com.porejemplo.controller.rest-part-one</name>
-    <description>Classwork and homework of Lesson 9, Spring I</description>
+    <name>lesson-10-com.porejemplo.controller.rest-part-two</name>
+    <description>Classwork and homework of Lesson 10, Spring I</description>
 
     <dependencies>
         <dependency>
