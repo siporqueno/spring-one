@@ -1,0 +1,15 @@
+###
+
+GET http://localhost:8080/spring-mvc-app/api/v1/cart/10
+
+###
+
+POST http://localhost:8080/spring-mvc-app/api/v1/cart/add/10/2
+
+###
+
+POST http://localhost:8080/spring-mvc-app/api/v1/cart/drop/10/1
+
+###
+
+DELETE http://localhost:8080/spring-mvc-app/api/v1/cart/10
