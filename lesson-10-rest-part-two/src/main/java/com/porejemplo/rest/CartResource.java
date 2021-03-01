@@ -22,12 +22,12 @@ public class CartResource {
         return cartService.findAllProductsOfUserWithId(userId);
     }
 
-    @PostMapping("/add/{user_id}/{product_id}")
+    @PostMapping("/add/{user_id}/user/{product_id}/product")
     public void addProductByIdToUserWithId(@PathVariable("user_id") Long userId, @PathVariable("product_id") Long productId) {
         cartService.addProductByIdToUserWithId(productId, userId);
     }
 
-    @PostMapping("/drop/{user_id}/{product_id}")
+    @PostMapping("/drop/{user_id}/user/{product_id}/product")
     public void deleteProductByIdFromUserWithId(@PathVariable("user_id") Long userId, @PathVariable("product_id") Long productId) {
         cartService.deleteProductByIdFromUserWithId(productId, userId);
     }
