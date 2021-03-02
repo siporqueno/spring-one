@@ -26,6 +26,7 @@
         <module>lesson-08-thymeleaf</module>
         <module>lesson-09-rest-part-one</module>
         <module>lesson-10-rest-part-two</module>
+        <module>lesson-11-security</module>
     </modules>
 
 
