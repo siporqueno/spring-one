@@ -11,9 +11,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>lesson-09-com.porejemplo.controller.rest-part-one</artifactId>
+    <artifactId>lesson-09-rest-part-one</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>lesson-09-com.porejemplo.controller.rest-part-one</name>
+    <name>lesson-09-rest-part-one</name>
     <description>Classwork and homework of Lesson 9, Spring I</description>
 
     <dependencies>
