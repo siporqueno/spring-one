@@ -13,7 +13,7 @@
     <groupId>org.example</groupId>
     <artifactId>lesson-10-rest-part-two</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>lesson-10-com.porejemplo.controller.rest-part-two</name>
+    <name>lesson-10-rest-part-two</name>
     <description>Classwork and homework of Lesson 10, Spring I</description>
 
     <dependencies>
