@@ -25,9 +25,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" th:classappend="${pageName == 'Products'} ? 'active'" th:href="@{/product}">Products</a>
+                <a class="nav-link" th:classappend="${pageName == 'Products'} ? 'active'"
+                   th:href="@{/product}">Products</a>
             </li>
-            <li class="nav-item">
+            <li sec:authorize="hasAnyRole('ADMIN', 'SUPERADMIN')" class="nav-item">
                 <a class="nav-link" th:classappend="${pageName == 'Users'} ? 'active'" th:href="@{/user}">Users</a>
             </li>
         </ul>
