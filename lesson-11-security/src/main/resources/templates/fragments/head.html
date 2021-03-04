@@ -32,7 +32,7 @@
             </li>
         </ul>
 
-        <!-- TODO добавить кнопку логин -->
+        <a sec:authorize="isAnonymous()" class="btn btn-outline-primary my-2 my-sm-0" th:href="@{/login}">Login</a>
 
         <form sec:authorize="isAuthenticated()"
               th:action="@{/logout}" th:method="post"
