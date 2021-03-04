@@ -43,6 +43,7 @@ public class SecurityConfiguration {
                     .antMatchers("/user/**").authenticated()
                     .and()
                     .formLogin()
+                    .loginPage("/login")
                     .defaultSuccessUrl("/product");
         }
     }
