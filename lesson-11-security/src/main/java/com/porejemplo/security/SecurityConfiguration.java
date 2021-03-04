@@ -40,6 +40,7 @@ public class SecurityConfiguration {
                     .authorizeRequests()
                     .antMatchers("/**/*.css", "/**/*.js").permitAll()
                     .antMatchers("/product/**").permitAll()
+                    .antMatchers("/user/new", "/user/update").permitAll()
                     .antMatchers("/user/**").hasAnyRole("ADMIN", "SUPERADMIN")
                     .and()
                     .formLogin()
