@@ -80,7 +80,7 @@ public class UserController {
 
         logger.info("Updating user with id {}", user.getId());
         userService.save(user);
-        return "redirect:/user";
+        return "redirect:/product";
     }
 
     @GetMapping("/new")

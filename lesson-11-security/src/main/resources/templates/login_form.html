@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head.html :: head"/>
+
+<body>
+
+<div class="container">
+    <div class="row py-2">
+        <div class="col-4 align-self-center">
+            <div class="form-group">
+                <label>Please sign in</label>
+            </div>
+            <form th:action="@{/login}" th:method="POST">
+
+                <div class="form-group">
+                    <input type="text" class="form-control" id="name" name="username" placeholder="Enter username">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control" id="password" name="password"
+                           placeholder="Enter password">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+            <a class="btn btn-primary mt-3" th:href="@{/user/new}">Sign up</a>
+
+        </div>
+    </div>
+</div>
+
+<th:block th:replace="fragments/footer.html :: scripts"/>
+
+</body>

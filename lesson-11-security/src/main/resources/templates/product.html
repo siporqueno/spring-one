@@ -1,15 +1,17 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="fragments/head.html :: head"/>
 
 <body>
 
-<nav th:replace="fragments/head.html :: navbar ('Products')"/>
+<nav th:replace="fragments/head.html :: navbar('Products')"/>
 
 <div class="container">
     <div class="row py-2">
-        <div class="col-12">
+        <div sec:authorize="hasRole('ADMIN')" class="col-12">
             <a class="btn btn-primary" th:href="@{/product/new}">Добавить продукт</a>
         </div>
 
@@ -44,7 +46,8 @@
                 <tr>
                     <th scope="col" th:replace="fragments/sort_header :: sort_header_product ('Id', 'id')"/>
                     <th scope="col" th:replace="fragments/sort_header :: sort_header_product ('Title', 'title')"/>
-                    <th scope="col" th:replace="fragments/sort_header :: sort_header_product ('Description', 'description')"/>
+                    <th scope="col"
+                        th:replace="fragments/sort_header :: sort_header_product ('Description', 'description')"/>
                     <th scope="col" th:replace="fragments/sort_header :: sort_header_product ('Price', 'price')"/>
                     <th scope="col">Actions</th>
                 </tr>
@@ -56,9 +59,10 @@
                     <td th:text="${product.description}">Lindt</td>
                     <td th:text="${product.price}">100</td>
                     <td>
-                        <a class="btn btn-success" th:href="@{/product/{id}(id = ${product.id})}"><i
-                                class="fas fa-edit"></i></a>
-                        <form class="d-inline" th:method="delete" th:action="@{/product/{id}(id = ${product.id})}">
+                        <a sec:authorize="hasRole('ADMIN')" class="btn btn-success"
+                           th:href="@{/product/{id}(id = ${product.id})}"><i class="fas fa-edit"></i></a>
+                        <form sec:authorize="hasRole('ADMIN')"
+                              class="d-inline" th:method="delete" th:action="@{/product/{id}(id = ${product.id})}">
                             <button type="submit" class="btn btn-danger"><i
                                     class="far fa-trash-alt"></i></button>
                         </form>
