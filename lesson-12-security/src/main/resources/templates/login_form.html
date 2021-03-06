@@ -15,6 +15,8 @@
 
                 <div class="form-group">
                     <input type="text" class="form-control" id="name" name="username" placeholder="Enter username">
+                    <small th:if="${param.error != null}" class="form-text text-danger">Incorrect login or password</small>
+                    <small th:if="${param.logout != null}" class="form-text text-success">Logout successful</small>
                 </div>
 
                 <div class="form-group">
@@ -23,8 +25,8 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Login</button>
+                <a class="px-3" th:href="@{/user/new_unauth}">Sign up</a>
             </form>
-            <a class="btn btn-primary mt-3" th:href="@{/user/new}">Sign up</a>
 
         </div>
     </div>

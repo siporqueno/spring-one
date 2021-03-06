@@ -47,6 +47,11 @@ public class UserRepr {
         this.roles = new HashSet<>(user.getRoles());
     }
 
+    public UserRepr(Role role) {
+        this.roles = new HashSet<>();
+        this.roles.add(role);
+    }
+
     public Long getId() {
         return id;
     }
