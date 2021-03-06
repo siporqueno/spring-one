@@ -1,0 +1,56 @@
+GET http://localhost:8080/spring-mvc-app/api/v1/user/all
+
+###
+
+GET http://localhost:8080/spring-mvc-app/api/v1/user/1
+
+###
+
+POST http://localhost:8080/spring-mvc-app/api/v1/user
+Content-Type: application/json
+
+{
+  "username": "user88",
+  "password": "qwer",
+  "email": "user88@mail.com",
+  "age": 9
+}
+
+###
+
+GET http://localhost:8080/spring-mvc-app/api/v1/user/filter?page=2
+
+###
+
+GET http://localhost:8080/spring-mvc-app/api/v1/product/all
+
+###
+
+GET http://localhost:8080/spring-mvc-app/api/v1/product/1
+
+###
+
+POST http://localhost:8080/spring-mvc-app/api/v1/product
+Content-Type: application/json
+
+{
+  "title": "tomato",
+  "description": "cherry",
+  "price": 300.00
+}
+
+###
+
+PUT http://localhost:8080/spring-mvc-app/api/v1/product
+Content-Type: application/json
+
+{
+  "id": 7,
+  "title": "tomato",
+  "description": "cherry",
+  "price": 280.00
+}
+
+###
+
+DELETE http://localhost:8080/spring-mvc-app/api/v1/product/6
