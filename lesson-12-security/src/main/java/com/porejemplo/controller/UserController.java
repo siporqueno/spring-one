@@ -83,8 +83,6 @@ public class UserController {
     public String createUnauth(Model model) {
         logger.info("Create new user request from unauthenticated user");
 
-//        model.addAttribute("user", new UserRepr(roleRepository.findRoleByName("ROLE_GUEST")
-//                .orElse(new Role("ROLE_GUEST"))));
         model.addAttribute("user", new UserRepr());
         return "user_form_unauth";
     }
